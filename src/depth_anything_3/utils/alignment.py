@@ -129,6 +129,10 @@ def apply_metric_scaling(
     Returns:
         Scaled depth tensor
     """
+    if intrinsics.ndim == 3:
+        focal_length = (intrinsics[:, 0, 0] + intrinsics[:, 1, 1]) / 2
+        return depth * (focal_length[:, None, None] / scale_factor)
+
     focal_length = (intrinsics[:, :, 0, 0] + intrinsics[:, :, 1, 1]) / 2
     return depth * (focal_length[:, :, None, None] / scale_factor)
 
