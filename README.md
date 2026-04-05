@@ -5,7 +5,11 @@
 
 [**Haotong Lin**](https://haotongl.github.io/)<sup>&ast;</sup> · [**Sili Chen**](https://github.com/SiliChen321)<sup>&ast;</sup> · [**Jun Hao Liew**](https://liewjunhao.github.io/)<sup>&ast;</sup> · [**Donny Y. Chen**](https://donydchen.github.io)<sup>&ast;</sup> · [**Zhenyu Li**](https://zhyever.github.io/) · [**Guang Shi**](https://scholar.google.com/citations?user=MjXxWbUAAAAJ&hl=en) · [**Jiashi Feng**](https://scholar.google.com.sg/citations?user=Q8iay0gAAAAJ&hl=en)
 <br>
+<<<<<<< HEAD
 [**Bingyi Kang**](https://bingykang.github.io/)<sup>&ast;&dagger;</sup>
+=======
+[**Bingyi Kang**](https://bingyikang.com/)<sup>&ast;&dagger;</sup>
+>>>>>>> 41736238f5bced4debf3f2a12375d2466874866d
 
 &dagger;project lead&emsp;&ast;Equal Contribution
 
@@ -40,7 +44,15 @@ All models are trained exclusively on **public academic datasets**.
 
 
 ## 📰 News
+<<<<<<< HEAD
 - **2025-11-14:** 🎉 Paper, project page, code and models are all released.
+=======
+- **11-12-2025:** 🚀 New models and [**DA3-Streaming**](da3_streaming/README.md) released! Handle ultra-long video sequence inference with less than 12GB GPU memory via sliding-window streaming inference. Special thanks to [Kai Deng](https://github.com/DengKaiCQ) for his contribution to DA3-Streaming!
+- **08-12-2025:** 📊 [Benchmark evaluation pipeline](docs/BENCHMARK.md) released! Evaluate pose estimation & 3D reconstruction on 5 datasets.
+- **30-11-2025:** Add [`use_ray_pose`](#use-ray-pose) and [`ref_view_strategy`](docs/funcs/ref_view_strategy.md) (reference view selection for multi-view inputs).   
+- **25-11-2025:** Add [Awesome DA3 Projects](#-awesome-da3-projects), a community-driven section featuring DA3-based applications.
+- **14-11-2025:** Paper, project page, code and models are all released.
+>>>>>>> 41736238f5bced4debf3f2a12375d2466874866d
 
 ## ✨ Highlights
 
@@ -82,9 +94,13 @@ We introduce a new benchmark to rigorously evaluate geometry prediction models o
 ### 📦 Installation
 
 ```bash
+<<<<<<< HEAD
 pip install torch\>=2 torchvision
+=======
+pip install xformers torch\>=2 torchvision
+>>>>>>> 41736238f5bced4debf3f2a12375d2466874866d
 pip install -e . # Basic
-pip install -e ".[gs]" # Gaussians Estimation and Rendering
+pip install --no-build-isolation git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70 # for gaussian head
 pip install -e ".[app]" # Gradio, python>=3.10
 pip install -e ".[all]" # ALL
 ```
@@ -196,18 +212,25 @@ Model = create_object(load_config("path/to/new/config"))
 
 - 🖥️ [Command Line Interface](docs/CLI.md)
 - 📑 [Python API](docs/API.md)
-<!-- - 🏁 [Visual Geometry Benchmark](docs/BENCHMARK.md) -->
+- 📊 [Benchmark Evaluation](docs/BENCHMARK.md)
 
 ## 🗂️ Model Cards
 
 Generally, you should observe that DA3-LARGE achieves comparable results to VGGT.
 
+The Nested series uses an Any-view model to estimate pose and depth, and a monocular metric depth estimator for scaling. 
+
+⚠️ Models with the `-1.1` suffix are retrained after fixing a training bug; prefer these refreshed checkpoints. The original `DA3NESTED-GIANT-LARGE`, `DA3-GIANT`, and `DA3-LARGE` remain available but are deprecated. You could expect much better performance for street scenes with the `-1.1` models.
+
 | 🗃️ Model Name                  | 📏 Params | 📊 Rel. Depth | 📷 Pose Est. | 🧭 Pose Cond. | 🎨 GS | 📐 Met. Depth | ☁️ Sky Seg | 📄 License     |
 |-------------------------------|-----------|---------------|--------------|---------------|-------|---------------|-----------|----------------|
 | **Nested** | | | | | | | | |
+| [DA3NESTED-GIANT-LARGE-1.1](https://huggingface.co/depth-anything/DA3NESTED-GIANT-LARGE-1.1)  | 1.40B     | ✅             | ✅            | ✅             | ✅     | ✅             | ✅         | CC BY-NC 4.0   |
 | [DA3NESTED-GIANT-LARGE](https://huggingface.co/depth-anything/DA3NESTED-GIANT-LARGE)  | 1.40B     | ✅             | ✅            | ✅             | ✅     | ✅             | ✅         | CC BY-NC 4.0   |
 | **Any-view Model** | | | | | | | | |
+| [DA3-GIANT-1.1](https://huggingface.co/depth-anything/DA3-GIANT-1.1)                     | 1.15B     | ✅             | ✅            | ✅             | ✅     |               |           | CC BY-NC 4.0   |
 | [DA3-GIANT](https://huggingface.co/depth-anything/DA3-GIANT)                     | 1.15B     | ✅             | ✅            | ✅             | ✅     |               |           | CC BY-NC 4.0   |
+| [DA3-LARGE-1.1](https://huggingface.co/depth-anything/DA3-LARGE-1.1)                     | 0.35B     | ✅             | ✅            | ✅             |       |               |           | CC BY-NC 4.0     |
 | [DA3-LARGE](https://huggingface.co/depth-anything/DA3-LARGE)                     | 0.35B     | ✅             | ✅            | ✅             |       |               |           | CC BY-NC 4.0     |
 | [DA3-BASE](https://huggingface.co/depth-anything/DA3-BASE)                     | 0.12B     | ✅             | ✅            | ✅             |       |               |           | Apache 2.0     |
 | [DA3-SMALL](https://huggingface.co/depth-anything/DA3-SMALL)                     | 0.08B     | ✅             | ✅            | ✅             |       |               |           | Apache 2.0     |
@@ -221,9 +244,95 @@ Generally, you should observe that DA3-LARGE achieves comparable results to VGGT
 
 ## ❓ FAQ
 
+<<<<<<< HEAD
 - **Older GPUs without XFormers support**: See [Issue #11](https://github.com/ByteDance-Seed/Depth-Anything-3/issues/11). Thanks to [@S-Mahoney](https://github.com/S-Mahoney) for the solution!
 
 
+=======
+- **Monocular Metric Depth**: To obtain metric depth in meters from `DA3METRIC-LARGE`, use `metric_depth = focal * net_output / 300.`, where `focal` is the focal length in pixels (typically the average of fx and fy from the camera intrinsic matrix K). Note that the output from `DA3NESTED-GIANT-LARGE` is already in meters.
+
+- <a id="use-ray-pose"></a>**Ray Head (`use_ray_pose`)**:  Our API and CLI support `use_ray_pose` arg, which means that the model will derive camera pose from ray head, which is generally slightly slower, but more accurate. Note that the default is `False` for faster inference speed. 
+  <details>
+  <summary>AUC3 Results for DA3NESTED-GIANT-LARGE</summary>
+  
+  | Model | HiRoom | ETH3D | DTU | 7Scenes | ScanNet++ | 
+  |-------|------|-------|-----|---------|-----------|
+  | `ray_head` | 84.4 | 52.6 | 93.9 | 29.5 | 89.4 |
+  | `cam_head` | 80.3 | 48.4 | 94.1 | 28.5 | 85.0 |
+
+  </details>
+
+
+
+
+- **Older GPUs without XFormers support**: See [Issue #11](https://github.com/ByteDance-Seed/Depth-Anything-3/issues/11). Thanks to [@S-Mahoney](https://github.com/S-Mahoney) for the solution!
+
+
+## 🏢 Awesome DA3 Projects
+
+A community-curated list of Depth Anything 3 integrations across 3D tools, creative pipelines, robotics, and web/VR viewers, including but not limited to these. You are welcome to submit your DA3-based project via PR, and we will review and feature it if applicable.
+
+- [DA3-blender](https://github.com/xy-gao/DA3-blender): Blender addon for DA3-based 3D reconstruction from a set of images. 
+
+- [ComfyUI-DepthAnythingV3](https://github.com/PozzettiAndrea/ComfyUI-DepthAnythingV3): ComfyUI nodes for Depth Anything 3, supporting single/multi-view and video-consistent depth with optional point‑cloud export.
+
+- [DA3-ROS2-Wrapper](https://github.com/GerdsenAI/GerdsenAI-Depth-Anything-3-ROS2-Wrapper): Real-time DA3 depth in ROS2 with multi-camera support. 
+
+- [DA3-ROS2-CPP-TensorRT](https://github.com/ika-rwth-aachen/ros2-depth-anything-v3-trt): DA3 ROS2 C++ TensorRT Inference Node: a ROS2 node for DA3 depth estimation using TensorRT for real-time inference.
+
+- [VideoDepthViewer3D](https://github.com/amariichi/VideoDepthViewer3D): Streaming videos with DA3 metric depth to a Three.js/WebXR 3D viewer for VR/stereo playback.
+
+
+## 🧑‍💻 Official Codebase Core Contributors and Maintainers
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://bingykang.github.io/">
+        <img src="https://images.weserv.nl/?url=https://bingykang.github.io/images/bykang_homepage.jpeg?h=100&w=100&fit=cover&mask=circle&maxage=7d" width="100px;" alt=""/>
+      </a>
+        <br />
+        <sub><b>Bingyi Kang</b></sub>
+    </td>
+    <td align="center">
+      <a href="https://haotongl.github.io/">
+        <img src="https://images.weserv.nl/?url=https://haotongl.github.io/assets/img/prof_pic.jpg?h=100&w=100&fit=cover&mask=circle&maxage=7d" width="100px;" alt=""/>
+      </a>
+        <br />
+        <sub>Haotong Lin</sub>
+    </td>
+    <td align="center">
+      <a href="https://github.com/SiliChen321">
+        <img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/195901058?v=4&h=100&w=100&fit=cover&mask=circle&maxage=7d" width="100px;" alt=""/>
+      </a>
+        <br />
+        <sub>Sili Chen</sub>
+    </td>
+    <td align="center">
+      <a href="https://liewjunhao.github.io/">
+        <img src="https://images.weserv.nl/?url=https://liewjunhao.github.io/images/liewjunhao.png?h=100&w=100&fit=cover&mask=circle&maxage=7d" width="100px;" alt=""/>
+       </a>
+        <br />
+        <sub>Jun Hao Liew</sub>
+    </td>
+    <td align="center">
+      <a href="https://donydchen.github.io/">
+        <img src="https://images.weserv.nl/?url=https://donydchen.github.io/assets/img/profile.jpg?h=100&w=100&fit=cover&mask=circle&maxage=7d" width="100px;" alt=""/>
+      </a>
+        <br />
+        <sub>Donny Y. Chen</sub>
+    </td>
+    <td align="center">
+      <a href="https://github.com/DengKaiCQ">
+        <img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/59907452?v=4&h=100&w=100&fit=cover&mask=circle&maxage=7d" width="100px;" alt=""/>
+      </a>
+        <br />
+        <sub>Kai Deng</sub>
+    </td>
+  </tr>
+</table>
+
+>>>>>>> 41736238f5bced4debf3f2a12375d2466874866d
 ## 📝 Citations
 If you find Depth Anything 3 useful in your research or projects, please cite our work:
 
